@@ -1,0 +1,14 @@
+@using TravelDiary.Models;
+
+<h3>Here are all the places in this Season category:</h3>
+
+<ol>
+@foreach (Place place in @Model["places"])
+{
+  <li><a href='/seasons/@Model["season"].Id/places/@place.Id'>@place.CityName</a></li>
+}
+</ol>
+
+<p><a href='/seasons/@Model["season"].Id/places/new'>Add a new item</a></p>
+<p><a href='/seasons'>Return to season list</a></p>
+<p><a href='/'>Return to Main Page</a></p>

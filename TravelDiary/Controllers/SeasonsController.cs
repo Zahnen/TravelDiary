@@ -25,5 +25,15 @@ namespace TravelDiary.Controllers
       Season newSeason = new Season(seasonName);
       return RedirectToAction("Index");
     }
+    [HttpGet("/seasons/{id}")]
+    public ActionResult Show(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Season selectedSeason = Season.Find(id);
+      List<Place> seasonPlaces = selectedSeason.Places;
+      model.Add("season", selectedSeason);
+      model.Add("places", seasonPlaces);
+      return View(model);
+    }
   }
 }
