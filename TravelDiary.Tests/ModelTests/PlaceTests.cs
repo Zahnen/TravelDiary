@@ -32,6 +32,22 @@ namespace TravelDiary.Tests
     }
 
     [TestMethod]
-    public void GetId_PlaceInstantiatedWithId
+    public void GetId_PlaceInstantiatedWithIdAndGetterReturns_Int()
+    {
+      string newCity = "Seoul";
+      Place newPlace = new Place(newCity);
+      int result = newPlace.Id;
+      Assert.AreEqual(1, result); 
+    }
+
+    [TestMethod]
+    public void Find_ReturnsCorrectPlace_Place()
+    {
+      Place newPlace1 = new Place("Tokyo");
+      Place newPlace2 = new Place("Seoul");
+      Place result = Place.Find(2);
+      Assert.AreEqual(newPlace2, result);
+    }
+
   }
 }
