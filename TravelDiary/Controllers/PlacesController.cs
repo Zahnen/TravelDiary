@@ -6,23 +6,23 @@ namespace TravelDiary.Controllers
 {
   public class PlacesController : Controller
   {
-    [HttpGet("/places")]
-    public ActionResult Index()
-    {
-      List<Place> allPlaces = Place.GetAll();
-      return View(allPlaces);
-    }
+    // [HttpGet("/places")]
+    // public ActionResult Index()
+    // {
+    //   List<Place> allPlaces = Place.GetAll();
+    //   return View(allPlaces);
+    // }
     [HttpGet("/places/new")]
     public ActionResult New()
     {
       return View();
     }
-    [HttpPost("/places")]
-    public ActionResult Create(string cityName)
-    {
-      Place myPlace = new Place(cityName);
-      return RedirectToAction("Index");
-    }
+    // [HttpPost("/places")]
+    // public ActionResult Create(string cityName)
+    // {
+    //   Place myPlace = new Place(cityName);
+    //   return RedirectToAction("Index");
+    // }
     [HttpPost("/places/delete")]
     public ActionResult DeleteAll()
     {
@@ -30,11 +30,22 @@ namespace TravelDiary.Controllers
       return View();
     }
 
-    [HttpGet("/places/{id}")]
-    public ActionResult Show(int id)
+    [HttpGet("/seasons/{seasonId}/places/{placeId}")]
+    public ActionResult Show(int seasonId, int placeId)
     {
-      Place foundPlace = Place.Find(id);
-      return View(foundPlace);
+    Place place = Place.Find(placeId);
+    Season season = Season.Find(seasonId);
+    Dictionary<string, object> model = new Dictionary<string, object>();
+    model.Add("place", place);
+    model.Add("season", season);
+    return View(model);
+    }
+
+    [HttpGet("/seasons/{seasonId}/places/new")]
+    public ActionResult New(int seasonId)
+    {
+      Season season = Season.Find(seasonId);
+      return View(season);
     }
   }
 }

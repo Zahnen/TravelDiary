@@ -35,5 +35,25 @@ namespace TravelDiary.Controllers
       model.Add("places", seasonPlaces);
       return View(model);
     }
+// This one creates new Places within a given Season, not new Categories:
+    [HttpPost("/seasons/{seasonId}/places")]
+    public ActionResult Create(int seasonId, string cityName)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Season foundSeason = Season.Find(seasonId);
+      Place newPlace = new Place(cityName);
+      foundSeason.AddPlace(newPlace);
+      List<Place> seasonPlaces = foundSeason.Places;
+      model.Add("places", seasonPlaces);
+      model.Add("season", foundSeason);
+      return View("Show", model);
+    }
   }
 }
+
+    // [HttpPost("/places")]
+    // public ActionResult Create(string cityName)
+    // {
+    //   Place myPlace = new Place(cityName);
+    //   return RedirectToAction("Index");
+    // }
