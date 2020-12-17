@@ -16,6 +16,20 @@ namespace TravelDiary.Models
       Id = _seasonsList.Count;
       Places = new List<Place>{};
     }
+    
+    public static List<Season> GetAll()
+    {
+      return _seasonsList;
+    }
 
+    public static Season Find(int Id)
+    {
+      return _seasonsList[Id-1];
+    }
+
+    public static void ClearAll()
+    {
+      _seasonsList.Clear();
+    }
   }
 }
