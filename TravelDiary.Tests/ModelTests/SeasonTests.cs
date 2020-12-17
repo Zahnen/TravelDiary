@@ -59,5 +59,18 @@ namespace TravelDiary.Tests
       Season result = Season.Find(2);
       Assert.AreEqual(newSeason2, result);
     }
+    [TestMethod]
+    public void AddPlace_AssociatesPlaceWithSeason_PlaceList()
+    {
+    string season = "Summer";
+    Season newSeason = new Season(season);
+    string place = "Tokyo";
+    Place newPlace = new Place(place);
+    List<Place> newList = new List<Place> { newPlace };
+    newSeason.AddPlace(newPlace);
+
+    List<Place> result = newSeason.Places;
+    CollectionAssert.AreEqual(newList, result);
+    }
   }
 }
