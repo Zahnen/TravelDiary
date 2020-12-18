@@ -1,3 +1,6 @@
+@{
+  Layout = "_Layout";
+}
 @using TravelDiary.Models;
 
 <h3>Here are all the places in this Season category:</h3>
@@ -9,6 +12,6 @@
 }
 </ol>
 
-<p><a href='/seasons/@Model["season"].Id/places/new'>Add a new item</a></p>
+<p><a href='/seasons/@Model["season"].Id/places/new'>Add a new place that you've visited</a></p>
 <p><a href='/seasons'>Return to season list</a></p>
 <p><a href='/'>Return to Main Page</a></p>
